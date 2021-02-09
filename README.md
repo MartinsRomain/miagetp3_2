@@ -12,3 +12,9 @@
 * symfony console make:entity Annonce
 * php bin/console make:migration
 * php bin/console doctrine:migrations:migrate
+
+*Question 3*
+* symfony composer require orm-fixtures --dev
+* symfony console make:fixture
+* symfony composer require fakerphp/faker
+* php bin/console doctrine:fixtures:load
