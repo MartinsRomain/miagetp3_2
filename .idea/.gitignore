@@ -3,10 +3,14 @@
 /workspace.xml
 # Datasource local storage ignored files
 <<<<<<< HEAD
+<<<<<<< HEAD
 /../../../../../../../../../:\Users\yanis\Desktop\CoursDistance\FrameworkWeb\dev\tp3_2\.idea/dataSources/
 =======
 /../../../../../../../../../:\Users\33695\Desktop\S6\Framework_Web\dev\miagetp3_2\.idea/dataSources/
 >>>>>>> Add initial set of files
+=======
+/../../../../../../../../../:\Users\33695\Desktop\S6\Framework_Web\dev\miagetp3_2\.idea/dataSources/
+>>>>>>> origin/RomainBranch
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
