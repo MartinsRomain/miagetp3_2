@@ -21,3 +21,7 @@
 
 *Question 4*
 * symfony console make:controller pages
+* si une erreur de "readonly database" -> chmod -R 777 var
+
+*Question 5*
+* symfony composer require cebe/markdown
