@@ -8,25 +8,34 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use cebe\markdown\Markdown;
 
 class PagesController extends AbstractController
 {
     /**
      * @Route("/annonce", name="annonce")
      */
-    public function index(AnnonceRepository $repo): Response
+    public function index(AnnonceRepository $repo, Markdown $markdown): Response
     {
         $annonces=$repo->findAll();
+        $parsedAnnonces = [];
+        foreach ($annonces  as $annonce) {
+            $parseAnnonce = $annonce;
+            $parseAnnonce ->setDescription($markdown->parse($annonce->getDescription()));
+            $parsedAnnonces[] = $parseAnnonce;
+        }
         return $this->render('pages/index.html.twig', [
-            'annonces' =>$annonces,
+            'annonces' =>$parsedAnnonces,
         ]);
     }
 
     /**
      * @Route("/annonce/show/{id}", name="annonce_show")
      */
-    public function show(Annonce $annonce): Response
+    public function show(Annonce $annonce, Markdown $markdown): Response
     {
+        $parseAnnonce = $annonce;
+        $parseAnnonce ->setDescription($markdown->parse($annonce->getDescription()));
         return $this->render('pages/show.html.twig', [
             'annonce' =>$annonce,
         ]);
