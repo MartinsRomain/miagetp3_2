@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Prix</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for annonce in annonces %}
+            <tr>
+                <td>
+                    {{ annonce.nom }}
+                </td>
+                <td>
+                    {{ annonce.description }}
+                </td>
+                <td>
+                    {{ annonce.prix }}
+                </td>
+                <td>
+                    <a href="{{ path('annonce_show', {'id': annonce.id}) }}">Visualiser</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucune annonce trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
