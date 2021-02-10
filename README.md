@@ -18,3 +18,6 @@
 * symfony console make:fixture
 * symfony composer require fakerphp/faker
 * php bin/console doctrine:fixtures:load
+
+*Question 4*
+* symfony console make:controller pages

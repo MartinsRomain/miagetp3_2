@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier annonce{% endblock %}
+
+{% block body %}
+    <h1>Modifier annonce n°{{ annonce.id }}</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button>{{ button_label|default('Sauvegarder') }}</button>
+    {{ form_end(form) }}
+{% endblock %}
