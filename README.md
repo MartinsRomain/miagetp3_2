@@ -33,3 +33,11 @@
 * Aucune commande symfony, seulement installation de material design
 * npm i material-components-web
 
+*Question8*
+* symfony console make:user
+* symfony console make:migration
+* php bin/console doctrine:migrations:migrate
+* symfony console make:auth
+* symfony console make:reg
+
+
