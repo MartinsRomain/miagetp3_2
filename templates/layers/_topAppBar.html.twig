@@ -1,0 +1,14 @@
+<header class="mdc-top-app-bar">
+    <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            <a href="{{ path('accueil') }}" class="material-icons
+            mdc-top-app-bar__action-item mdc-icon-button" aria-label="Home">home</a>
+            <span class="mdc-top-app-bar__title">Accueil</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+            <a href='{{ path('annonce', {'option' : 'all'}) }}' class="material-icons
+            mdc-top-app-bar__action-item mdc-icon-button" aria-label="list">list</a>
+            <span class="mdc-top-app-bar__title">Annonces</span>
+        </section>
+    </div>
+</header>

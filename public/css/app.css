@@ -1,0 +1,49 @@
+body{
+    background-color: #b8b8b8;
+    text-align: center;
+    margin: 0px;
+}
+
+.mdc-top-app-bar{
+    background-color: #414141;
+}
+
+.mdc-typography-styles-headline1 {
+    font-family: "Roboto";
+    font-size: 60px;
+}
+
+#minicard {
+    margin: 3% 20%;
+}
+
+.mdc-card{
+    padding: 2%;
+}
+
+.mdc-card__primary-content{
+    text-align: left;
+}
+
+.mdc-card__primary-title{
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size: 24px;
+}
+
+#formulaireEdit{
+    width: 100%;
+    height: 100%;
+}
+
+.mdc-notched-outline__leading{
+    font-weight: bold;
+}
+
+.mdc-text-field--outlined{
+    size: auto;
+}
+
+.mdc-card__actions{
+    justify-content: center;
+}

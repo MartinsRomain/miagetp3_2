@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+        <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <meta charset="UTF-8">
         {% block stylesheets %}{% endblock %}
-
         {% block javascripts %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {{ include('layers/_topAppBar.html.twig') }}
+        <main class="mdc-top-app-bar--fixed-adjust">
+            {% block body %}{% endblock %}
+        </main>
     </body>
 </html>

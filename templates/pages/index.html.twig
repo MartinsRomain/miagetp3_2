@@ -3,43 +3,13 @@
 {% block title %}Annonces{% endblock %}
 
 {% block body %}
-    <table>
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Prix</th>
-                <th>
-                    <button>
-                        <a href='{{ path('annonce', {'option' : 'ASC'}) }}'>Prix croissants</a>
-                    </button>
-                    <button>
-                        <a href='{{ path('annonce', {'option' : 'DESC'}) }}'>Prix décroissants</a>
-                    </button>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for annonce in annonces %}
-            <tr>
-                <td>
-                    {{ annonce.nom }}
-                </td>
-                <td>
-                    {{ annonce.description |raw}}
-                </td>
-                <td>
-                    {{ annonce.prix }}
-                </td>
-                <td>
-                    <a href="{{ path('annonce_show', {'id': annonce.id}) }}">Visualiser</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">Aucune annonce trouvée</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+            {% for annonce in annonces %}
+                <div class="mdc-layout-grid__cell">
+                    {%  include 'layers/_card.html.twig' %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

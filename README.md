@@ -28,3 +28,8 @@
 
 *Question 6*
 * Aucune commande utilisée
+
+*Question 7*
+* Aucune commande symfony, seulement installation de material design
+* npm i material-components-web
+

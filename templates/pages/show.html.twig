@@ -3,30 +3,5 @@
 {% block title %}Annonce - {{ annonce.nom }}{% endblock %}
 
 {% block body %}
-    <table>
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Description</th>
-                <th>Prix</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    {{ annonce.nom }}
-                </td>
-                <td>
-                    {{ annonce.description |raw }}
-                </td>
-                <td>
-                    {{ annonce.prix }}
-                </td>
-                <td>
-                    <a href="{{ path('annonce_delete',{id:annonce.id}) }}">Supprimer</a>
-                    <a href="{{ path('annonce_edit',{id:annonce.id}) }}">Modifier</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    {%  include 'layers/_minicard.html.twig' %}
 {% endblock %}
