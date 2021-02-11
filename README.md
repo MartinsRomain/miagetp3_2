@@ -40,4 +40,11 @@
 * symfony console make:auth
 * symfony console make:reg
 
+*Question 9*
+* symfony console make:entity Annonce
+* ajout d'un attribut "auteur" avec une relation ManyToOne
+* php bin/console make:migration
+* php bin/console doctrine:migrations:migrate
+* symfony console doctrine:fixtures:load
+
 
