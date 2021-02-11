@@ -13,20 +13,35 @@ use cebe\markdown\Markdown;
 class PagesController extends AbstractController
 {
     /**
-     * @Route("/annonce", name="annonce")
+     * @Route("/")
+     * @Route("/accueil", name="accueil")
      */
-    public function index(AnnonceRepository $repo, Markdown $markdown): Response
+    public function index(): Response
     {
-        $annonces=$repo->findAll();
-        $parsedAnnonces = [];
-        foreach ($annonces  as $annonce) {
-            $parseAnnonce = $annonce;
-            $parseAnnonce ->setDescription($markdown->parse($annonce->getDescription()));
-            $parsedAnnonces[] = $parseAnnonce;
-        }
-        return $this->render('pages/index.html.twig', [
-            'annonces' =>$parsedAnnonces,
-        ]);
+        return $this->render('pages/accueil.html.twig');
+    }
+
+    /**
+     * @Route("/annonce/{option}", name="annonce")
+     */
+    public function annonceListing(AnnonceRepository $repo, Markdown $markdown, String $option)
+        {
+            if($option == 'all'){
+                $annonces = $repo->findAll();
+            }
+            else{
+                $annonces = $repo->findBy([], array('prix'=>$option));
+            }
+
+            $parsedAnnonces = [];
+            foreach ($annonces  as $annonce) {
+                $parseAnnonce = $annonce;
+                $parseAnnonce ->setDescription($markdown->parse($annonce->getDescription()));
+                $parsedAnnonces[] = $parseAnnonce;
+            }
+            return $this->render('pages/index.html.twig', [
+                'annonces' =>$parsedAnnonces
+            ]);
     }
 
     /**
@@ -37,7 +52,7 @@ class PagesController extends AbstractController
         $parseAnnonce = $annonce;
         $parseAnnonce ->setDescription($markdown->parse($annonce->getDescription()));
         return $this->render('pages/show.html.twig', [
-            'annonce' =>$annonce,
+            'annonce' =>$annonce
         ]);
     }
 
@@ -49,7 +64,10 @@ class PagesController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($annonce);
         $entityManager->flush();
-        return $this->redirectToRoute('annonce');
+
+        return $this->redirectToRoute('annonce', array(
+            'option' => 'all'
+        ));
     }
 
     /**
@@ -68,12 +86,14 @@ class PagesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
-            return $this->redirectToRoute('annonce');
+            return $this->redirectToRoute('annonce', array(
+                'option' => 'all'
+            ));
         }
 
         return $this->render('pages/edit.html.twig', [
             'annonce' => $annonce,
-            'form' => $form->createView(),
+            'form' => $form->createView()
         ]);
     }
 }

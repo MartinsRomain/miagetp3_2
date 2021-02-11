@@ -25,3 +25,6 @@
 
 *Question 5*
 * symfony composer require cebe/markdown
+
+*Question 6*
+* Aucune commande utilisée

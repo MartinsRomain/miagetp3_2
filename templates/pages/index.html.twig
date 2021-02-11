@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Annonces{% endblock %}
 
 {% block body %}
     <table>
@@ -9,6 +9,14 @@
                 <th>Nom</th>
                 <th>Description</th>
                 <th>Prix</th>
+                <th>
+                    <button>
+                        <a href='{{ path('annonce', {'option' : 'ASC'}) }}'>Prix croissants</a>
+                    </button>
+                    <button>
+                        <a href='{{ path('annonce', {'option' : 'DESC'}) }}'>Prix décroissants</a>
+                    </button>
+                </th>
             </tr>
         </thead>
         <tbody>
