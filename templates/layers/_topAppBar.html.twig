@@ -6,9 +6,11 @@
             <span class="mdc-top-app-bar__title">Accueil</span>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+            <span class="mdc-top-app-bar__title">Annonces</span>
             <a href='{{ path('annonce', {'option' : 'all'}) }}' class="material-icons
             mdc-top-app-bar__action-item mdc-icon-button" aria-label="list">list</a>
-            <span class="mdc-top-app-bar__title">Annonces</span>
+            <a href='{{ path('annonce_create') }}' class="material-icons
+            mdc-top-app-bar__action-item mdc-icon-button " aria-label="list">add_box</a>
         </section>
     </div>
 </header>

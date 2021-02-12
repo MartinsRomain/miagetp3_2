@@ -1,0 +1,67 @@
+<div class="mdc-card" id="minicard">
+    {{ form_start(form) }}
+    <div>
+        <div>
+            <label class="mdc-text-field mdc-text-field--outlined">
+                    <span class="mdc-notched-outline">
+                        <span class="mdc-notched-outline__leading">Nom</span>
+                        <span class="mdc-notched-outline__trailing"></span>
+                    </span>
+                <input type="text"
+                       id="{{ form.children.nom.vars.id }}"
+                       name="{{ form.children.nom.vars.full_name }}"
+                       value="{{ form.nom.vars.value }}"
+                       placeholder="Nom de l'annonce"
+                       class="mdc-text-field__input" aria-labelledby="my-label-id">
+            </label>
+            {% do form.nom.setRendered %}
+        </div>
+        <div>
+            <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea">
+                    <span class="mdc-notched-outline">
+                        <span class="mdc-notched-outline__leading" id="my-label-id">Description</span>
+                        <span class="mdc-notched-outline__notch">
+                            <span class="mdc-floating-label"></span>
+                        </span>
+                        <span class="mdc-notched-outline__trailing"></span>
+                    </span>
+                <span class="mdc-text-field__resizer">
+                        <textarea class="mdc-text-field__input"
+                                  id="{{ form.children.description.vars.id }}"
+                                  name="{{ form.children.description.vars.full_name }}"
+                                  aria-labelledby="my-label-id"
+                                  rows="8"
+                                  cols="40"
+                                  maxlength="140"
+                                  aria-label="Label">{{  form.description.vars.value }}
+                        </textarea>
+                    </span>
+            </label>
+            {% do form.description.setRendered %}
+        </div>
+        <div>
+            <label class="mdc-text-field mdc-text-field--outlined">
+                    <span class="mdc-notched-outline">
+                        <span class="mdc-notched-outline__leading">Prix</span>
+                        <span class="mdc-notched-outline__trailing"></span>
+                    </span>
+                <input type="text"
+                       id="{{ form.children.prix.vars.id }}"
+                       name="{{ form.children.prix.vars.full_name }}"
+                       value="{{ form.prix.vars.value }}"
+                       placeholder="Prix"
+                       class="mdc-text-field__input" aria-labelledby="my-label-id">
+            </label>
+            {% do form.prix.setRendered %}
+        </div>
+        <div class="mdc-card__actions">
+            <div>
+                <button type="submit" class="mdc-button">
+                    <span class="mdc-button__ripple"></span>
+                    <span class="mdc-button__label">{{ button_label }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>

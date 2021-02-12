@@ -47,4 +47,5 @@
 * php bin/console doctrine:migrations:migrate
 * symfony console doctrine:fixtures:load
 
-
+*Question 10*
+* La question 4 ne mentionnait pas la création d'annonce, celle-ci va donc être faite maintenant.

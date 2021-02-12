@@ -57,6 +57,38 @@ class PagesController extends AbstractController
     }
 
     /**
+     * @Route("/create", name="annonce_create")
+     */
+    public function create(Request $request): Response
+    {
+        $user = $this->getUser();
+        if ($user == null) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $annonce = new Annonce();
+        $form = $this->createFormBuilder($annonce)
+            ->add('nom')
+            ->add('description')
+            ->add('prix')
+            ->getForm();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $annonce->setAuteur($user);
+            $entityManager->persist($annonce);
+            $entityManager->flush();
+            return $this->redirectToRoute('annonce_show', ['id' => $annonce->getId()]);
+        }
+
+        return $this->render('pages/create.html.twig', [
+            'annonce' => $annonce,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/annonce/{id}/delete", name="annonce_delete")
      */
     public function remove(Annonce $annonce): Response
