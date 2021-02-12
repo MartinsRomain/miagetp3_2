@@ -53,3 +53,7 @@
 *Question 11*
 * Contraintes ajoutées aux boutons : "s'inscrire", "se connecter", "se déconnecter".
 * Possibilité de modifier ou supprimer une annonce seulement si l'utilisateur est connecté et est l'auteur de l'annonce.
+
+*Question 12*
+* Mise en forme des formulaires d'authentification.
+* Aucune commande symfony utilisée.

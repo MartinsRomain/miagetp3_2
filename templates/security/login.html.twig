@@ -14,16 +14,37 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
+    <h1 class="h3 mb-3 font-weight-normal">Connectez vous</h1>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+    <div  class="mdc-card__action-buttons">
+        <label class="mdc-text-field mdc-text-field--filled" for="inputUsername">
+            <span class="mdc-text-field__ripple"></span>
+            <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control mdc-text-field__input" type="text" aria-labelledby="my-label-id" required autofocus>
+            <span class="mdc-line-ripple"></span>
+            Username
+        </label>
+        <label class="mdc-text-field mdc-text-field--filled" for="inputPassword">
+            <span class="mdc-text-field__ripple"></span>
+            <input type="password" value="{{ last_username }}" name="password" id="inputPassword" class="form-control mdc-text-field__input" type="text" aria-labelledby="my-label-id" required autofocus>
+            <span class="mdc-line-ripple"></span>
+            Password
+        </label>
+    </div>
 
+    <div  class="mdc-card__action-buttons">
+        <button class="btn btn-lg mdc-button--raised mdc-button mdc-button--touch" type="submit">
+            <span class="mdc-button__ripple"></span>
+            <i class="material-icons mdc-button__icon" aria-hidden="true">
+                login
+            </i>
+            <span class="mdc-button__label">Se connecter</span>
+            <span class="mdc-button__touch"></span>
+        </button>
+
+        <input type="hidden" name="_csrf_token"
+               value="{{ csrf_token('authenticate') }}"
+        >
+    </div>
     {#
         Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
         See https://symfony.com/doc/current/security/remember_me.html
@@ -35,8 +56,5 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
 </form>
 {% endblock %}

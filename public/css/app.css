@@ -1,5 +1,5 @@
 body{
-    background-color: #b8b8b8;
+    background-color: #e2e2e2;
     text-align: center;
     margin: 0px;
 }
@@ -45,5 +45,13 @@ body{
 }
 
 .mdc-card__actions{
+    justify-content: center;
+}
+
+.mdc-button{
+    background-color: #414141;
+}
+
+.mdc-card__action-buttons{
     justify-content: center;
 }

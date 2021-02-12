@@ -5,9 +5,36 @@
 {% block body %}
     <p class="mdc-typography-styles-headline1">Site d'annonces</p>
     {% if app.user == null %}
-        <a href="{{ path('app_register') }}">S'inscrire</a>
-        <a href="{{ path('app_login') }}">Se connecter</a>
+
+        <div  class="mdc-card__action-buttons mdc-layout-grid__cell--align-right">
+            <button onclick="location.href='{{ path('app_register')}}'" class="mdc-button mdc-button--raised">
+                <span class="mdc-button__ripple"></span>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">
+                    input
+                </i>
+                <span class="mdc-button__label">S'inscrire</span>
+            </button>
+
+            <button onclick="location.href='{{ path('app_login')}}'" class="mdc-button mdc-button--raised">
+                <span class="mdc-button__ripple"></span>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">
+                    login
+                </i>
+                <span class="mdc-button__label">Se connecter</span>
+            </button>
+        </div>
+
     {% else %}
-        <a href="{{ path('app_logout') }}">Se deconnecter</a>
+
+        <div  class="mdc-card__action-buttons mdc-layout-grid__cell--align-right">
+            <button onclick="location.href='{{ path('app_logout')}}'" class="mdc-button mdc-button--raised">
+                <span class="mdc-button__ripple"></span>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">
+                    logout
+                </i>
+                <span class="mdc-button__label">Se deconnecter</span>
+            </button>
+        </div>
+
     {% endif %}
 {% endblock %}
