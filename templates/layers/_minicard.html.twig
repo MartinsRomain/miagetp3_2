@@ -9,18 +9,21 @@
     </div>
     {% if ((app.user != null) and (app.user.id == annonce.auteur.id)) %}
         <div class="mdc-card__actions">
-            <div onclick="location.href='{{ path('annonce_delete',{id:annonce.id}) }}'" class="mdc-card__action-buttons">
-                <button class="mdc-button mdc-card__action mdc-card__action--button">
-                    <div class="mdc-button__ripple"></div>
-                    <span class="mdc-button__label">Supprimer</span>
-                </button>
-            </div>
-            <div onclick="location.href='{{ path('annonce_edit',{id:annonce.id}) }}'" class="mdc-card__action-buttons">
-                <button class="mdc-button mdc-card__action mdc-card__action--button">
-                    <div class="mdc-button__ripple"></div>
-                    <span class="mdc-button__label">Modifier</span>
-                </button>
-            </div>
+            <button onclick="location.href='{{ path('annonce_edit',{id:annonce.id}) }}'" class="mdc-button mdc-button--raised">
+                <span class="mdc-button__ripple"></span>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">
+                    edit
+                </i>
+                <span class="mdc-button__label">Modifier</span>
+            </button>
+
+            <button onclick="location.href='{{ path('annonce_delete',{id:annonce.id}) }}'" class="mdc-button mdc-button--raised">
+                <span class="mdc-button__ripple"></span>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">
+                    delete
+                </i>
+                <span class="mdc-button__label">Supprimer</span>
+            </button>
         </div>
     {% endif %}
 </div>

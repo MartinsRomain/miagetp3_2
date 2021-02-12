@@ -8,12 +8,13 @@
         <p>Prix : {{ annonce.prix }}</p>
     </div>
     <div class="mdc-card__actions">
-        <div onclick="location.href='{{ path('annonce_show', {'id': annonce.id}) }}'" class="mdc-card__action-buttons">
-            <button class="mdc-button mdc-card__action mdc-card__action--button">
-                <div class="mdc-button__ripple"></div>
-                <span class="mdc-button__label">Visualiser</span>
-            </button>
-        </div>
+        <button onclick="location.href='{{ path('annonce_show', {'id': annonce.id}) }}'" class="mdc-button mdc-button--raised">
+            <span class="mdc-button__ripple"></span>
+            <i class="material-icons mdc-button__icon" aria-hidden="true">
+                visibility
+            </i>
+            <span class="mdc-button__label">Visualiser</span>
+        </button>
     </div>
 </div>
 

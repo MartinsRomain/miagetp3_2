@@ -2,62 +2,57 @@
     {{ form_start(form) }}
     <div>
         <div>
-            <label class="mdc-text-field mdc-text-field--outlined">
-                    <span class="mdc-notched-outline">
-                        <span class="mdc-notched-outline__leading">Nom</span>
-                        <span class="mdc-notched-outline__trailing"></span>
-                    </span>
+            <label class="mdc-text-field mdc-text-field--filled" for="{{ form.children.nom.vars.id }}">
+                <span class="mdc-text-field__ripple"></span>
                 <input type="text"
                        id="{{ form.children.nom.vars.id }}"
                        name="{{ form.children.nom.vars.full_name }}"
                        value="{{ form.nom.vars.value }}"
-                       placeholder="Nom de l'annonce"
-                       class="mdc-text-field__input" aria-labelledby="my-label-id">
+                       class="form-control mdc-text-field__input"
+                       aria-labelledby="my-label-id" required autofocus>
+                <span class="mdc-line-ripple"></span>
+                Nom
             </label>
             {% do form.nom.setRendered %}
         </div>
         <div>
-            <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea">
-                    <span class="mdc-notched-outline">
-                        <span class="mdc-notched-outline__leading" id="my-label-id">Description</span>
-                        <span class="mdc-notched-outline__notch">
-                            <span class="mdc-floating-label"></span>
-                        </span>
-                        <span class="mdc-notched-outline__trailing"></span>
-                    </span>
-                <span class="mdc-text-field__resizer">
+            <label class="mdc-text-field mdc-text-field--filled mdc-text-field--textarea">
+                <span class="mdc-text-field__ripple"></span>
                         <textarea class="mdc-text-field__input"
                                   id="{{ form.children.description.vars.id }}"
                                   name="{{ form.children.description.vars.full_name }}"
                                   aria-labelledby="my-label-id"
                                   rows="8"
-                                  cols="40"
+                                  cols="60"
                                   maxlength="140"
                                   aria-label="Label">{{  form.description.vars.value }}
                         </textarea>
-                    </span>
+                    Description
+                <span class="mdc-line-ripple"></span>
             </label>
             {% do form.description.setRendered %}
         </div>
         <div>
-            <label class="mdc-text-field mdc-text-field--outlined">
-                    <span class="mdc-notched-outline">
-                        <span class="mdc-notched-outline__leading">Prix</span>
-                        <span class="mdc-notched-outline__trailing"></span>
-                    </span>
+            <label class="mdc-text-field mdc-text-field--filled" for="{{ form.children.prix.vars.id }}">
+                <span class="mdc-text-field__ripple"></span>
                 <input type="text"
                        id="{{ form.children.prix.vars.id }}"
                        name="{{ form.children.prix.vars.full_name }}"
                        value="{{ form.prix.vars.value }}"
-                       placeholder="Prix"
-                       class="mdc-text-field__input" aria-labelledby="my-label-id">
+                       class="form-control mdc-text-field__input"
+                       aria-labelledby="my-label-id" required autofocus>
+                <span class="mdc-line-ripple"></span>
+                Prix
             </label>
             {% do form.prix.setRendered %}
         </div>
         <div class="mdc-card__actions">
             <div>
-                <button type="submit" class="mdc-button">
+                <button type="submit" class="mdc-button mdc-button--raised">
                     <span class="mdc-button__ripple"></span>
+                    <i class="material-icons mdc-button__icon" aria-hidden="true">
+                        save_alt
+                    </i>
                     <span class="mdc-button__label">{{ button_label }}</span>
                 </button>
             </div>

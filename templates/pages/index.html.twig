@@ -7,12 +7,20 @@
         <div class="mdc-card__actions">
             <div  class="mdc-card__action-buttons mdc-layout-grid--align-right">
                 <label><span>Trier par :</span></label>
-                <button onclick="location.href='{{ path('annonce',{option: 'ASC'}) }}'" class="mdc-button mdc-card__action mdc-card__action--button">
-                    <div class="mdc-button__ripple"></div>
+
+                <button onclick="location.href='{{ path('annonce',{option: 'ASC'}) }}'" class="mdc-button mdc-button--raised">
+                    <span class="mdc-button__ripple"></span>
+                    <i class="material-icons mdc-button__icon" aria-hidden="true">
+                        expand_less
+                    </i>
                     <span class="mdc-button__label">Prix Croissant</span>
                 </button>
-                <button onclick="location.href='{{ path('annonce',{option:'DESC'}) }}'" class="mdc-button mdc-card__action mdc-card__action--button">
-                    <div class="mdc-button__ripple"></div>
+
+                <button onclick="location.href='{{ path('annonce',{option:'DESC'}) }}'" class="mdc-button mdc-button--raised">
+                    <span class="mdc-button__ripple"></span>
+                    <i class="material-icons mdc-button__icon" aria-hidden="true">
+                        expand_more
+                    </i>
                     <span class="mdc-button__label">Prix Decroissant</span>
                 </button>
             </div>
