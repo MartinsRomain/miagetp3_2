@@ -18,6 +18,8 @@ class PagesController extends AbstractController
      */
     public function index(): Response
     {
+        $user = $this->getUser();
+
         return $this->render('pages/accueil.html.twig');
     }
 
@@ -40,7 +42,7 @@ class PagesController extends AbstractController
                 $parsedAnnonces[] = $parseAnnonce;
             }
             return $this->render('pages/index.html.twig', [
-                'annonces' =>$parsedAnnonces
+                'annonces' => $parsedAnnonces
             ]);
     }
 
@@ -52,7 +54,7 @@ class PagesController extends AbstractController
         $parseAnnonce = $annonce;
         $parseAnnonce ->setDescription($markdown->parse($annonce->getDescription()));
         return $this->render('pages/show.html.twig', [
-            'annonce' =>$annonce
+            'annonce' => $annonce
         ]);
     }
 

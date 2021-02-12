@@ -7,18 +7,20 @@
         {{ annonce.description | raw}}
         Prix : {{ annonce.prix }}
     </div>
-    <div class="mdc-card__actions">
-        <div onclick="location.href='{{ path('annonce_delete',{id:annonce.id}) }}'" class="mdc-card__action-buttons">
-            <button class="mdc-button mdc-card__action mdc-card__action--button">
-                <div class="mdc-button__ripple"></div>
-                <span class="mdc-button__label">Supprimer</span>
-            </button>
+    {% if ((app.user != null) and (app.user.id == annonce.auteur.id)) %}
+        <div class="mdc-card__actions">
+            <div onclick="location.href='{{ path('annonce_delete',{id:annonce.id}) }}'" class="mdc-card__action-buttons">
+                <button class="mdc-button mdc-card__action mdc-card__action--button">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label">Supprimer</span>
+                </button>
+            </div>
+            <div onclick="location.href='{{ path('annonce_edit',{id:annonce.id}) }}'" class="mdc-card__action-buttons">
+                <button class="mdc-button mdc-card__action mdc-card__action--button">
+                    <div class="mdc-button__ripple"></div>
+                    <span class="mdc-button__label">Modifier</span>
+                </button>
+            </div>
         </div>
-        <div onclick="location.href='{{ path('annonce_edit',{id:annonce.id}) }}'" class="mdc-card__action-buttons">
-            <button class="mdc-button mdc-card__action mdc-card__action--button">
-                <div class="mdc-button__ripple"></div>
-                <span class="mdc-button__label">Modifier</span>
-            </button>
-        </div>
-    </div>
+    {% endif %}
 </div>

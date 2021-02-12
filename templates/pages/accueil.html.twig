@@ -4,7 +4,10 @@
 
 {% block body %}
     <p class="mdc-typography-styles-headline1">Site d'annonces</p>
-    <a href="{{ path('app_register') }}">S'inscrire</a>
-    <a href="{{ path('app_login') }}">Se connecter</a>
-    <a href="{{ path('app_logout') }}">Se deconnecter</a>
+    {% if app.user == null %}
+        <a href="{{ path('app_register') }}">S'inscrire</a>
+        <a href="{{ path('app_login') }}">Se connecter</a>
+    {% else %}
+        <a href="{{ path('app_logout') }}">Se deconnecter</a>
+    {% endif %}
 {% endblock %}

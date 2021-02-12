@@ -49,3 +49,7 @@
 
 *Question 10*
 * La question 4 ne mentionnait pas la création d'annonce, celle-ci va donc être faite maintenant.
+
+*Question 11*
+* Contraintes ajoutées aux boutons : "s'inscrire", "se connecter", "se déconnecter".
+* Possibilité de modifier ou supprimer une annonce seulement si l'utilisateur est connecté et est l'auteur de l'annonce.
