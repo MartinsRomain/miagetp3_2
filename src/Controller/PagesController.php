@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Annonce;
+use App\Entity\Categorie;
 use App\Repository\AnnonceRepository;
 use App\Repository\CategorieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -90,6 +91,37 @@ class PagesController extends AbstractController
         return $this->render('pages/create.html.twig', [
             'annonce' => $annonce,
             'categories' => $categories,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/createCategorie", name="categorie_create")
+     */
+    public function createCategorie(CategorieRepository $repo, Request $request): Response
+    {
+        $user = $this->getUser();
+        if ($user == null) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        $categorie = new Categorie();
+        $form = $this->createFormBuilder($categorie)
+            ->add('nom')
+            ->getForm();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($categorie);
+            $entityManager->flush();
+            return $this->redirectToRoute('annonce', array(
+                'option' => 'all'
+            ));
+        }
+
+        return $this->render('pages/createCategorie.html.twig', [
+            'annonce' => $categorie,
             'form' => $form->createView(),
         ]);
     }
