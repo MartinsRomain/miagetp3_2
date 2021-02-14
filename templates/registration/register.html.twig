@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
     {% for flashError in app.flashes('verify_email_error') %}
@@ -9,20 +9,24 @@
 
     <h1 class="h3 mb-3 font-weight-normal">S'inscrire</h1>
 
-    <div  class="mdc-card__action-buttons">
-    {{ form_start(registrationForm) }}
-        <label class="mdc-text-field mdc-text-field--filled">
-            <span class="mdc-text-field__ripple"></span>
-        {{ form_row(registrationForm.username) }}
-            <span class="mdc-line-ripple"></span>
+    <div>
+     {{ form_start(registrationForm) }}
+        <label class="mdc-text-field mdc-text-field--filled" for="{{ registrationForm.children.username.vars.id }}">
+                <span class="mdc-text-field__ripple"></span>
+                <input type="text" name="{{ registrationForm.children.username.vars.full_name }}" id="{{ registrationForm.children.username.vars.id }}" class="form-control mdc-text-field__input" aria-labelledby="my-label-id" required autofocus>
+                <span class="mdc-line-ripple"></span>
+                Username
         </label>
-        <label class="mdc-text-field mdc-text-field--filled">
+        {{ form_errors(registrationForm.username) }}
+    {% do registrationForm.username.setRendered %}
+        <label class="mdc-text-field mdc-text-field--filled" for="{{ registrationForm.children.plainPassword.vars.id }}">
             <span class="mdc-text-field__ripple"></span>
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
+            <input type="password" name="{{ registrationForm.children.plainPassword.vars.full_name }}" id="{{ registrationForm.children.plainPassword.vars.id }}" class="form-control mdc-text-field__input" aria-labelledby="my-label-id" required autofocus>
             <span class="mdc-line-ripple"></span>
+            Password
         </label>
+        {{ form_errors(registrationForm.plainPassword) }}
+        {% do registrationForm.plainPassword.setRendered %}
     </div>
         {{ form_row(registrationForm.agreeTerms) }}
 
@@ -34,5 +38,5 @@
             <span class="mdc-button__label">S'inscrire</span>
             <span class="mdc-button__touch"></span>
         </button>
-    {{ form_end(registrationForm) }}
+        {{ form_end(registrationForm) }}
 {% endblock %}

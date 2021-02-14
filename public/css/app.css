@@ -54,3 +54,8 @@ body{
 .mdc-card__action-buttons{
     justify-content: center;
 }
+
+.categoryInFormLayer{
+    margin-right: 3px;
+}
+

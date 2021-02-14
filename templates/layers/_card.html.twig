@@ -9,9 +9,9 @@
     {% if annonce is defined %}
         <span>Auteur : {{ annonce.auteur.username }}</span>
         {% if annonce.categorie == null %}
-            <span>Categorie : Aucune</span>
+            <span>Catégorie : Aucune</span>
         {% else %}
-            <span>Categorie : {{ annonce.categorie.nom }}</span>
+            <span>Catégorie : {{ annonce.categorie.nom }}</span>
         {% endif %}
         <div class="mdc-card__primary-content">
             <p>{{ annonce.description | raw}}</p>

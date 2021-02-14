@@ -1,13 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Annonces{% endblock %}
+{% block title %}
+    {% if annonces is defined %}
+        Annonces
+    {% else %}
+        Catégories
+    {% endif %}
+{% endblock %}
 
 {% block body %}
     <div class="mdc-layout-grid">
         {% if annonces is defined %}
             <div class="mdc-card__actions">
                 <div  class="mdc-card__action-buttons mdc-layout-grid--align-right">
-                    <label><span>Trier par :</span></label>
+                    <label><h2>Trier par :</h2></label>
                     <button onclick="location.href='{{ path('categorie') }}'" class="mdc-button mdc-button--raised">
                         <span class="mdc-button__ripple"></span>
                         <i class="material-icons mdc-button__icon" aria-hidden="true">
