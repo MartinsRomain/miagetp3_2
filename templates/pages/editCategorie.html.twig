@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier categorie{% endblock %}
+
+{% block body %}
+    <h1>Modifier categorie</h1>
+
+    {{ include('layers/_categorieFormulaire.html.twig',{'button_label': 'Enregistrer'}) }}
+{% endblock %}

@@ -1,0 +1,31 @@
+<div class="mdc-card" id="minicard">
+    {{ form_start(form) }}
+    <div>
+        <div>
+            <label class="mdc-text-field mdc-text-field--filled" for="{{ form.children.nom.vars.id }}">
+                <span class="mdc-text-field__ripple"></span>
+                <input type="text"
+                       id="{{ form.children.nom.vars.id }}"
+                       name="{{ form.children.nom.vars.full_name }}"
+                       value="{{ form.nom.vars.value }}"
+                       class="form-control mdc-text-field__input"
+                       aria-labelledby="my-label-id" required autofocus>
+                <span class="mdc-line-ripple"></span>
+                Nom
+            </label>
+            {% do form.nom.setRendered %}
+        </div>
+        <div class="mdc-card__actions">
+            <div>
+                <button type="submit" class="mdc-button mdc-button--raised">
+                    <span class="mdc-button__ripple"></span>
+                    <i class="material-icons mdc-button__icon" aria-hidden="true">
+                        save_alt
+                    </i>
+                    <span class="mdc-button__label">{{ button_label }}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>

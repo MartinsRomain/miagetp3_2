@@ -8,7 +8,11 @@
     </div>
     {% if annonce is defined %}
         <span>Auteur : {{ annonce.auteur.username }}</span>
-        <span>Categorie : {{ annonce.categorie.nom }}</span>
+        {% if annonce.categorie == null %}
+            <span>Categorie : Aucune</span>
+        {% else %}
+            <span>Categorie : {{ annonce.categorie.nom }}</span>
+        {% endif %}
         <div class="mdc-card__primary-content">
             <p>{{ annonce.description | raw}}</p>
             <p>Prix : {{ annonce.prix }}</p>
@@ -23,6 +27,22 @@
             </button>
         </div>
     {% else %}
+        <div class="mdc-card__actions">
+            <button onclick="location.href='{{ path('categorie_edit',{id:categorie.id}) }}'" class="mdc-button mdc-button--raised">
+                <span class="mdc-button__ripple"></span>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">
+                    edit
+                </i>
+                <span class="mdc-button__label">Modifier</span>
+            </button>
+            <button onclick="location.href='{{ path('categorie_delete',{id:categorie.id}) }}'" class="mdc-button mdc-button--raised">
+                <span class="mdc-button__ripple"></span>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">
+                    delete
+                </i>
+                <span class="mdc-button__label">Supprimer</span>
+            </button>
+        </div>
         <div class="mdc-card__actions">
             <button onclick="location.href='{{ path('annonce',{'categorie' : categorie.nom , 'option' : 'all'}) }}'" class="mdc-button mdc-button--raised">
                 <span class="mdc-button__ripple"></span>

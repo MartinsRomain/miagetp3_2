@@ -164,6 +164,22 @@ class PagesController extends AbstractController
     }
 
     /**
+     * @Route("/categorie/{id}/delete", name="categorie_delete")
+     */
+    public function removeCategory(AnnonceRepository $repo, Categorie $categorie): Response
+    {
+        $annonces = $repo->findBy(array('categorie'=>$categorie->getId()));
+        $entityManager = $this->getDoctrine()->getManager();
+        foreach ($annonces as $annonce){
+            $entityManager->remove($annonce);
+        }
+        $entityManager->remove($categorie);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('categorie');
+    }
+
+    /**
      * @Route("/annonce/{id}/edit", name="annonce_edit")
      */
     public function edit(CategorieRepository $repo, Request $request,Annonce $annonce): Response
@@ -190,6 +206,28 @@ class PagesController extends AbstractController
         return $this->render('pages/edit.html.twig', [
             'annonce' => $annonce,
             'categories' => $categories,
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/categorie/{id}/edit", name="categorie_edit")
+     */
+    public function editCategory(Request $request,Categorie $categorie): Response
+    {
+        $form = $this->createFormBuilder($categorie)
+            ->add('nom')
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+            return $this->redirectToRoute('categorie');
+        }
+
+        return $this->render('pages/editCategorie.html.twig', [
             'form' => $form->createView()
         ]);
     }

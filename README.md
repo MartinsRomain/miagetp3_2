@@ -66,4 +66,5 @@
 * symfony console make:fixture
 
 *Question 14*
+* On supprime les annonces dont la catégorie a été supprimé
 * Aucune commande symfony utilisée.
