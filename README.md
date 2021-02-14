@@ -64,3 +64,6 @@
 * symfony console make:migration
 * symfony console doctrine:migrations:migrate
 * symfony console make:fixture
+
+*Question 14*
+* Aucune commande symfony utilisée.

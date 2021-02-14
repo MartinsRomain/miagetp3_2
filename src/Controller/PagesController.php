@@ -26,7 +26,7 @@ class PagesController extends AbstractController
     }
 
     /**
-     * @Route("/annonce/{categorie}/{option}", name="annonce")
+     * @Route("/annonce/list/{categorie}/{option}", name="annonce")
      */
     public function annonceListing(CategorieRepository $repoC, AnnonceRepository $repo, Markdown $markdown, String $categorie, String $option)
     {
@@ -162,20 +162,7 @@ class PagesController extends AbstractController
             'option' => 'all'
         ));
     }
-    /*
-    /**
-     * @Route("/categorie/{id}/delete", name="categorie_delete")
-     */
-    /*
-    public function removeCategorie(Categorie $categorie): Response
-    {
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($categorie);
-        $entityManager->flush();
 
-        return $this->redirectToRoute('categorie');
-    }
-*/
     /**
      * @Route("/annonce/{id}/edit", name="annonce_edit")
      */
