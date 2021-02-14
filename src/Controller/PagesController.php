@@ -26,30 +26,54 @@ class PagesController extends AbstractController
     }
 
     /**
-     * @Route("/annonce/{option}", name="annonce")
+     * @Route("/annonce/{categorie}/{option}", name="annonce")
      */
-    public function annonceListing(AnnonceRepository $repo, Markdown $markdown, String $option)
-        {
-            if($option == 'all'){
-                $annonces = $repo->findAll();
-            }
-            else{
-                $annonces = $repo->findBy([], array('prix'=>$option));
-            }
+    public function annonceListing(CategorieRepository $repoC, AnnonceRepository $repo, Markdown $markdown, String $categorie, String $option)
+    {
+        if($categorie == 'all' and $option == 'all'){
+            $annonces = $repo->findAll();
+        }
+        elseif($categorie == 'all'){
+            $annonces = $repo->findBy([],array('prix'=>$option));
+        }
+        elseif($option == 'all'){
+            $idCategorie = $repoC->findOneBy(array('nom'=>$categorie))->getId();
+            $annonces = $repo->findBy(array('categorie'=>$idCategorie));
+        }
+        else{
+            $idCategorie = $repoC->findOneBy(array('nom'=>$categorie))->getId();
+            $annonces = $repo->findBy(array('categorie'=>$idCategorie),array('prix'=>$option));
+        }
 
-            $parsedAnnonces = [];
-            foreach ($annonces  as $annonce) {
-                $parseAnnonce = $annonce;
-                $parseAnnonce ->setDescription($markdown->parse($annonce->getDescription()));
-                $parsedAnnonces[] = $parseAnnonce;
-            }
-            return $this->render('pages/index.html.twig', [
-                'annonces' => $parsedAnnonces
-            ]);
+        $parsedAnnonces = [];
+        foreach ($annonces  as $annonce) {
+            $parseAnnonce = $annonce;
+            $parseAnnonce ->setDescription($markdown->parse($annonce->getDescription()));
+            $parsedAnnonces[] = $parseAnnonce;
+        }
+        return $this->render('pages/index.html.twig', [
+            'categorie' => $categorie,
+            'annonces' => $parsedAnnonces,
+            'option' => $option
+        ]);
     }
 
+
     /**
-     * @Route("/annonce/show/{id}", name="annonce_show")
+     * @Route("categorie", name="categorie")
+     */
+    public function categorieListing(CategorieRepository $repo)
+    {
+        $categories = $repo->findAll();
+
+        return $this->render('pages/index.html.twig', [
+            'categories' => $categories
+        ]);
+    }
+
+
+    /**
+     * @Route("/annonce/{id}/show", name="annonce_show")
      */
     public function show(Annonce $annonce, Markdown $markdown): Response
     {
@@ -115,13 +139,11 @@ class PagesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($categorie);
             $entityManager->flush();
-            return $this->redirectToRoute('annonce', array(
-                'option' => 'all'
-            ));
+            return $this->redirectToRoute('categorie');
         }
 
         return $this->render('pages/createCategorie.html.twig', [
-            'annonce' => $categorie,
+            'categorie' => $categorie,
             'form' => $form->createView(),
         ]);
     }
@@ -136,10 +158,24 @@ class PagesController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('annonce', array(
+            'categorie' => 'all',
             'option' => 'all'
         ));
     }
+    /*
+    /**
+     * @Route("/categorie/{id}/delete", name="categorie_delete")
+     */
+    /*
+    public function removeCategorie(Categorie $categorie): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($categorie);
+        $entityManager->flush();
 
+        return $this->redirectToRoute('categorie');
+    }
+*/
     /**
      * @Route("/annonce/{id}/edit", name="annonce_edit")
      */
@@ -159,6 +195,7 @@ class PagesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
             return $this->redirectToRoute('annonce', array(
+                'categorie' => 'all',
                 'option' => 'all'
             ));
         }

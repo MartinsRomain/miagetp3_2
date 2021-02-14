@@ -4,27 +4,35 @@
 
 {% block body %}
     <div class="mdc-layout-grid">
-        <div class="mdc-card__actions">
-            <div  class="mdc-card__action-buttons mdc-layout-grid--align-right">
-                <label><span>Trier par :</span></label>
+        {% if annonces is defined %}
+            <div class="mdc-card__actions">
+                <div  class="mdc-card__action-buttons mdc-layout-grid--align-right">
+                    <label><span>Trier par :</span></label>
+                    <button onclick="location.href='{{ path('categorie') }}'" class="mdc-button mdc-button--raised">
+                        <span class="mdc-button__ripple"></span>
+                        <i class="material-icons mdc-button__icon" aria-hidden="true">
+                            category
+                        </i>
+                        <span class="mdc-button__label">Categorie</span>
+                    </button>
 
-                <button onclick="location.href='{{ path('annonce',{option: 'ASC'}) }}'" class="mdc-button mdc-button--raised">
-                    <span class="mdc-button__ripple"></span>
-                    <i class="material-icons mdc-button__icon" aria-hidden="true">
-                        expand_less
-                    </i>
-                    <span class="mdc-button__label">Prix Croissant</span>
-                </button>
+                    <button onclick="location.href='{{ path('annonce',{'categorie' : categorie , 'option' : 'ASC'}) }}'" class="mdc-button mdc-button--raised">
+                        <span class="mdc-button__ripple"></span>
+                        <i class="material-icons mdc-button__icon" aria-hidden="true">
+                            expand_less
+                        </i>
+                        <span class="mdc-button__label">Prix Croissant</span>
+                    </button>
 
-                <button onclick="location.href='{{ path('annonce',{option:'DESC'}) }}'" class="mdc-button mdc-button--raised">
-                    <span class="mdc-button__ripple"></span>
-                    <i class="material-icons mdc-button__icon" aria-hidden="true">
-                        expand_more
-                    </i>
-                    <span class="mdc-button__label">Prix Decroissant</span>
-                </button>
+                    <button onclick="location.href='{{ path('annonce',{'categorie' : categorie , 'option' : 'DESC'}) }}'" class="mdc-button mdc-button--raised">
+                        <span class="mdc-button__ripple"></span>
+                        <i class="material-icons mdc-button__icon" aria-hidden="true">
+                            expand_more
+                        </i>
+                        <span class="mdc-button__label">Prix Decroissant</span>
+                    </button>
+                </div>
             </div>
-        </div>
 
         <div class="mdc-layout-grid__inner">
             {% for annonce in annonces %}
@@ -33,5 +41,14 @@
                 </div>
             {% endfor %}
         </div>
+        {% else %}
+            <div class="mdc-layout-grid__inner">
+                {% for categorie in categories %}
+                    <div class="mdc-layout-grid__cell">
+                        {% include 'layers/_card.html.twig' %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

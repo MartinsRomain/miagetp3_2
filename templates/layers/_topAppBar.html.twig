@@ -7,14 +7,14 @@
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
             <span class="mdc-top-app-bar__title">Annonces</span>
-            <a href='{{ path('annonce', {'option' : 'all'}) }}' class="material-icons
+            <a href='{{ path('annonce', {'categorie' : 'all','option' : 'all'}) }}' class="material-icons
             mdc-top-app-bar__action-item mdc-icon-button" aria-label="list">list</a>
             <a href='{{ path('annonce_create') }}' class="material-icons
             mdc-top-app-bar__action-item mdc-icon-button " aria-label="list">add_box</a>
 
             <span class="mdc-top-app-bar__title">Categorie</span>
-            {#<a href='{{ path('annonce', {'option' : 'all'}) }}' class="material-icons
-            mdc-top-app-bar__action-item mdc-icon-button" aria-label="list">list</a>#}
+            <a href='{{ path('categorie') }}' class="material-icons
+            mdc-top-app-bar__action-item mdc-icon-button" aria-label="list">list</a>
             <a href='{{ path('categorie_create') }}' class="material-icons
             mdc-top-app-bar__action-item mdc-icon-button " aria-label="list">add_box</a>
         </section>

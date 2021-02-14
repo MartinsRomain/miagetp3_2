@@ -1,22 +1,37 @@
 <div class="mdc-card">
     <div class="mdc-card__primary-title">
+        {% if annonce is defined %}
             {{ annonce.nom }}
+        {% else %}
+            {{ categorie.nom }}
+        {% endif %}
     </div>
-    <span>Auteur : {{ annonce.auteur.username }}</span>
-    <span>Categorie : {{ annonce.categorie.nom }}</span>
-
-    <div class="mdc-card__primary-content">
-        <p>{{ annonce.description | raw}}</p>
-        <p>Prix : {{ annonce.prix }}</p>
-    </div>
-    <div class="mdc-card__actions">
-        <button onclick="location.href='{{ path('annonce_show', {'id': annonce.id}) }}'" class="mdc-button mdc-button--raised">
-            <span class="mdc-button__ripple"></span>
-            <i class="material-icons mdc-button__icon" aria-hidden="true">
-                visibility
-            </i>
-            <span class="mdc-button__label">Visualiser</span>
-        </button>
-    </div>
+    {% if annonce is defined %}
+        <span>Auteur : {{ annonce.auteur.username }}</span>
+        <span>Categorie : {{ annonce.categorie.nom }}</span>
+        <div class="mdc-card__primary-content">
+            <p>{{ annonce.description | raw}}</p>
+            <p>Prix : {{ annonce.prix }}</p>
+        </div>
+        <div class="mdc-card__actions">
+            <button onclick="location.href='{{ path('annonce_show', {'id': annonce.id}) }}'" class="mdc-button mdc-button--raised">
+                <span class="mdc-button__ripple"></span>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">
+                    visibility
+                </i>
+                <span class="mdc-button__label">Visualiser</span>
+            </button>
+        </div>
+    {% else %}
+        <div class="mdc-card__actions">
+            <button onclick="location.href='{{ path('annonce',{'categorie' : categorie.nom , 'option' : 'all'}) }}'" class="mdc-button mdc-button--raised">
+                <span class="mdc-button__ripple"></span>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">
+                    check
+                </i>
+                <span class="mdc-button__label">Choisir</span>
+            </button>
+        </div>
+    {% endif %}
 </div>
 
