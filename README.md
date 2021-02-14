@@ -57,3 +57,10 @@
 *Question 12*
 * Mise en forme des formulaires d'authentification.
 * Aucune commande symfony utilisée.
+
+*Question 13*
+* symfony console make:entity Categorie
+* symfony console make:entity Annonce (on ajoute le champ 'categorie' comme relation ManyToOne)
+* symfony console make:migration
+* symfony console doctrine:migrations:migrate
+* symfony console make:fixture

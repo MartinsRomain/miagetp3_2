@@ -18,16 +18,16 @@
         <div>
             <label class="mdc-text-field mdc-text-field--filled mdc-text-field--textarea">
                 <span class="mdc-text-field__ripple"></span>
-                        <textarea class="mdc-text-field__input"
-                                  id="{{ form.children.description.vars.id }}"
-                                  name="{{ form.children.description.vars.full_name }}"
-                                  aria-labelledby="my-label-id"
-                                  rows="8"
-                                  cols="60"
-                                  maxlength="140"
-                                  aria-label="Label">{{  form.description.vars.value }}
-                        </textarea>
                     Description
+                    <textarea class="mdc-text-field__input"
+                              id="{{ form.children.description.vars.id }}"
+                              name="{{ form.children.description.vars.full_name }}"
+                              aria-labelledby="my-label-id"
+                              rows="8"
+                              cols="60"
+                              maxlength="140"
+                              aria-label="Label">{{  form.description.vars.value }}
+                    </textarea>
                 <span class="mdc-line-ripple"></span>
             </label>
             {% do form.description.setRendered %}
@@ -46,6 +46,28 @@
             </label>
             {% do form.prix.setRendered %}
         </div>
+
+        <div>
+            <label class="mdc-text-field mdc-text-field--filled" for="{{ form.children.categorie.vars.id }}">
+                <span class="mdc-text-field__ripple"></span>
+                <span>Categorie :</span>
+                <select
+                        id="{{ form.children.categorie.vars.id }}"
+                       name="{{ form.children.categorie.vars.full_name }}"
+                       class="form-control"
+                       aria-labelledby="my-label-id" required autofocus>
+                    {% if annonce.categorie != null %}
+                        <option value="{{ form.categorie.vars.value }}">{{ annonce.categorie.nom }}</option>
+                    {% endif %}
+                    {% for categorie in categories %}
+                        <option value="{{ categorie.id }}">{{ categorie.nom }}</option>
+                    {% endfor %}
+                </select>
+                <span class="mdc-line-ripple"></span>
+            </label>
+            {% do form.categorie.setRendered %}
+        </div>
+
         <div class="mdc-card__actions">
             <div>
                 <button type="submit" class="mdc-button mdc-button--raised">

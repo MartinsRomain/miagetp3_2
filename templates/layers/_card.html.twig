@@ -2,7 +2,9 @@
     <div class="mdc-card__primary-title">
             {{ annonce.nom }}
     </div>
-    Auteur : {{ annonce.auteur.username }}
+    <span>Auteur : {{ annonce.auteur.username }}</span>
+    <span>Categorie : {{ annonce.categorie.nom }}</span>
+
     <div class="mdc-card__primary-content">
         <p>{{ annonce.description | raw}}</p>
         <p>Prix : {{ annonce.prix }}</p>

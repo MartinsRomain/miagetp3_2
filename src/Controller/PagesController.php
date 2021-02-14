@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Annonce;
 use App\Repository\AnnonceRepository;
+use App\Repository\CategorieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -61,18 +62,20 @@ class PagesController extends AbstractController
     /**
      * @Route("/create", name="annonce_create")
      */
-    public function create(Request $request): Response
+    public function create(CategorieRepository $repo, Request $request): Response
     {
         $user = $this->getUser();
         if ($user == null) {
             return $this->redirectToRoute('app_login');
         }
 
+        $categories = $repo->findAll();
         $annonce = new Annonce();
         $form = $this->createFormBuilder($annonce)
             ->add('nom')
             ->add('description')
             ->add('prix')
+            ->add('categorie')
             ->getForm();
         $form->handleRequest($request);
 
@@ -86,6 +89,7 @@ class PagesController extends AbstractController
 
         return $this->render('pages/create.html.twig', [
             'annonce' => $annonce,
+            'categories' => $categories,
             'form' => $form->createView(),
         ]);
     }
@@ -107,11 +111,13 @@ class PagesController extends AbstractController
     /**
      * @Route("/annonce/{id}/edit", name="annonce_edit")
      */
-    public function edit(Request $request,Annonce $annonce): Response
+    public function edit(CategorieRepository $repo, Request $request,Annonce $annonce): Response
     {
+        $categories = $repo->findAll();
         $form = $this->createFormBuilder($annonce)
             ->add('nom')
             ->add('description')
+            ->add('categorie')
             ->add('prix')
             ->getForm();
 
@@ -127,6 +133,7 @@ class PagesController extends AbstractController
 
         return $this->render('pages/edit.html.twig', [
             'annonce' => $annonce,
+            'categories' => $categories,
             'form' => $form->createView()
         ]);
     }
